@@ -4,11 +4,17 @@ This is a lightweight Firefox browser extension that detects phishing attempts b
 
 ---
 
-## Installing
+## Installing and usage
 
 The extension is already available on the Firefox Add-ons store. You can install it directly from there:
 
 <https://addons.mozilla.org/en-US/firefox/addon/phishing-detector1/>
+
+To use it, simply click the extension icon in the toolbar after visiting a website. The extension will analyze the URL and display the results in a popup.
+
+If you wish to analyze many urls, there is also a web interface available at:
+
+<https://phishing.fernandoa.dev/>
 
 ---
 
