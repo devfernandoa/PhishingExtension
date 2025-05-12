@@ -1,18 +1,26 @@
-chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-    chrome.runtime.sendMessage({ type: 'analyze', url: tab.url }, (response) => {
-        const root = document.getElementById('root');
-        if (response.error) {
-            root.innerHTML = `<p class="error">Error: ${response.error}</p>`;
-            return;
-        }
+chrome.runtime.sendMessage({ type: 'get-history' }, (response) => {
+    const root = document.getElementById('root');
+    const history = response.history || [];
 
-        const { domain, riskScore, issues } = response.result;
-        const color = riskScore <= 30 ? '#00ff88' : riskScore <= 70 ? '#ffcc00' : '#ff4d4d';
+    if (history.length === 0) {
+        root.innerHTML = `<p>No recent scans.</p>`;
+        return;
+    }
 
-        root.innerHTML = `
-        <h1>${domain}</h1>
-        <p style="color:${color}; font-weight:bold;">Risk Score: ${riskScore}</p>
-        <ul>${issues.map(i => `<li><b>${i.type}</b>: ${i.message}</li>`).join('')}</ul>
-      `;
-    });
+    root.innerHTML = `
+    <h1>Recent URL Scans</h1>
+    <ul>
+      ${history.map(h => `
+        <li>
+          <span style="color:#00C9FF;">${h.domain}</span>: 
+          <span style="color:${getColor(h.riskScore)};">${h.riskScore}</span>
+        </li>`).join('')}
+    </ul>
+  `;
 });
+
+function getColor(score) {
+    if (score <= 30) return '#00ff88';
+    if (score <= 70) return '#ffcc00';
+    return '#ff4d4d';
+}
