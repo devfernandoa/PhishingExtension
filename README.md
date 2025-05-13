@@ -1,4 +1,4 @@
-# 🛡️ Phishing Detector – Firefox Extension
+# Phishing Detector – Firefox Extension
 
 This is a lightweight Firefox browser extension that detects phishing attempts by analyzing the current website URL using a remote phishing detection backend.
 
