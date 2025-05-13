@@ -1,14 +1,15 @@
 {
     "manifest_version": 2,
     "name": "Phishing Detector",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Warns you about phishing websites using a remote analysis backend.",
     "permissions": [
         "tabs",
         "notifications",
+        "storage",
+        "webNavigation",
         "http://*/",
-        "https://*/",
-        "webNavigation"
+        "https://*/"
     ],
     "background": {
         "scripts": [

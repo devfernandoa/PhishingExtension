@@ -3,11 +3,30 @@
 
 <head>
     <link rel="stylesheet" href="popup.css" />
+    <meta charset="UTF-8">
 </head>
 
 <body>
     <div id="root">
-        <p>Analyzing URL...</p>
+        <h1>Phishing Detector</h1>
+
+        <label>Sensitivity Threshold
+            <input id="threshold" type="number" min="0" max="100" value="50">
+            <small>Higher values mean stricter blocking (50 = medium)</small>
+        </label>
+
+        <label>Whitelist Domain
+            <input id="whitelist" type="text" placeholder="example.com">
+            <button id="addWhitelist">Add to Whitelist</button>
+            <small>Add trusted domains to bypass scanning</small>
+            <div id="whitelistError" class="error"></div>
+        </label>
+
+        <h2>Whitelisted Domains</h2>
+        <ul id="whitelistList"></ul>
+
+        <h2>Recent Scans</h2>
+        <ul id="historyList"></ul>
     </div>
     <script src="popup.js"></script>
 </body>
